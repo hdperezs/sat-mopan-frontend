@@ -5,10 +5,10 @@ import {
 } from 'recharts';
 
 const API = 'https://web-production-ade42.up.railway.app';
-const H_PUENTE = 750;
-const U_PREC = 300;
-const U_ALERT = 500;
-const U_EMER = 650;
+const H_PUENTE = 400;
+const U_PREC = 100;
+const U_ALERT = 200;
+const U_EMER = 300;
 
 function getEstado(cm) {
   if (cm >= U_EMER) return { l: 'EMERGENCIA', c: '#ef4444', bg: '#2d0a0a', bc: '#7f1d1d' };
@@ -264,7 +264,7 @@ function Simulador({ onEnvio }) {
           <div style={{ height: '100%', width: pct + '%', background: est.c, borderRadius: 4, transition: 'all .3s' }} />
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#475569' }}>
-          <span>0m</span><span>Precaución 3m</span><span>Alerta 5m</span><span>Emer. 6.5m</span><span>7.5m</span>
+          <span>0m</span><span>Precaución 3m</span><span>Alerta 5m</span><span>Emer. 6.5m</span><span>4.0m</span>
         </div>
       </div>
       <div style={{ fontSize: 10, color: '#7c3aed', textTransform: 'uppercase', letterSpacing: '.08em', fontWeight: 500, marginBottom: 8 }}>Escenarios rápidos</div>
@@ -387,7 +387,7 @@ export default function App() {
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
                   <span style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '.07em' }}>Historial de nivel del río</span>
                   <div style={{ display: 'flex', gap: 14 }}>
-                    {[['#3b82f6','nivel'],['#f59e0b','precaución 3m'],['#ef4444','alerta 5m']].map(([c,l]) => (
+                    {[['#3b82f6','nivel'],['#f59e0b','precaución 1m'],['#ef4444','alerta 2m']].map(([c,l]) => (
                       <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11, color: '#64748b' }}>
                         <div style={{ width: 8, height: 8, borderRadius: 2, background: c }} />{l}
                       </div>
@@ -404,18 +404,18 @@ export default function App() {
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
                     <XAxis dataKey="hora" tick={{ fontSize: 10, fill: '#475569' }} axisLine={{ stroke: '#1e293b' }} tickLine={false} interval="preserveStartEnd" />
-                    <YAxis tick={{ fontSize: 10, fill: '#475569' }} axisLine={false} tickLine={false} tickFormatter={v => v.toFixed(1) + 'm'} domain={[0, 7.5]} width={42} />
+                    <YAxis tick={{ fontSize: 10, fill: '#475569' }} axisLine={false} tickLine={false} tickFormatter={v => v.toFixed(1) + 'm'} domain={[0, 4.0]} width={42} />
                     <Tooltip content={<CustomTooltip />} />
-                    <ReferenceLine y={3.0} stroke="#f59e0b" strokeDasharray="4 3" strokeOpacity={0.6} />
-                    <ReferenceLine y={5.0} stroke="#ef4444" strokeDasharray="4 3" strokeOpacity={0.6} />
-                    <ReferenceLine y={6.5} stroke="#ef4444" strokeDasharray="4 3" strokeOpacity={0.8} />
+                    <ReferenceLine y={1.0} stroke="#f59e0b" strokeDasharray="4 3" strokeOpacity={0.6} />
+                    <ReferenceLine y={2.0} stroke="#ef4444" strokeDasharray="4 3" strokeOpacity={0.6} />
+                    <ReferenceLine y={3.0} stroke="#ef4444" strokeDasharray="4 3" strokeOpacity={0.8} />
                     <Area type="monotone" dataKey="nivel" stroke={est.c} strokeWidth={2} fill="url(#nivelGrad)" dot={false} activeDot={{ r: 4, fill: est.c, strokeWidth: 0 }} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
 
               <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 10, padding: 16 }}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '.07em', marginBottom: 14 }}>Nivel vs puente (7.5m)</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '.07em', marginBottom: 14 }}>Nivel vs puente (4.0m)</div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
                   <div style={{ fontFamily: 'monospace', fontSize: 32, fontWeight: 700, color: '#60a5fa' }}>{nivelM}</div>
                   <div style={{ fontSize: 11, color: '#64748b' }}>metros sobre el cauce</div>
@@ -439,7 +439,7 @@ export default function App() {
                     <div style={{ height: '100%', width: pct + '%', background: est.c, borderRadius: 4, transition: 'width .8s ease' }} />
                   </div>
                   <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#475569' }}>
-                    <span>0m</span><span>3.75m</span><span>7.5m</span>
+                    <span>0m</span><span>2.0m</span><span>4.0m</span>
                   </div>
                 </div>
               </div>
