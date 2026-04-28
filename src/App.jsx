@@ -383,7 +383,7 @@ export default function App() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: 10 }}>
               <KpiCard accent="#3b82f6" label="Distancia al agua" value={distCm < 900 ? distCm.toFixed(1) + ' cm' : 'Error'} color={est.c} sub="menor distancia = mayor riesgo" />
               <KpiCard accent="#f59e0b" label="Batería" value={voltaje.toFixed(2)} color="#f59e0b" sub={voltaje >= 12 ? 'carga óptima' : 'carga baja'} />
-              <KpiCard accent="#8b5cf6" label="Última lectura" value={actual ? new Date(actual.timestamp).toLocaleTimeString('es-GT', { hour: '2-digit', minute: '2-digit' }) : '--:--'} color="#8b5cf6" valueSub sub="actualiza automáticamente" />
+              <KpiCard accent="#8b5cf6" label="Última lectura" value={actual ? new Date(actual.timestamp).toLocaleTimeString('es-GT', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '--/--/----'} color="#8b5cf6" valueSub sub="actualiza automáticamente" />
               <KpiCard accent="#22c55e" label="Mediciones" value={historial.length} color="#22c55e" sub="en este historial" />
             </div>
 
